@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camera Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .video-container {
+            width: 100%;
+            max-width: 640px;
+            background-color: #000;
+            margin: 20px 0;
+        }
+        
+        video {
+            width: 100%;
+            display: block;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .error {
+            color: red;
+            margin: 10px 0;
+        }
+        
+        .status {
+            color: #333;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>WebCam Test Page</h1>
+    <p>This page tests if your webcam is working properly.</p>
+    
+    <div class="video-container">
+        <video id="video" autoplay playsinline></video>
+    </div>
+    
+    <div>
+        <button id="startButton">Start Camera</button>
+        <button id="stopButton">Stop Camera</button>
+    </div>
+    
+    <div id="error" class="error"></div>
+    <div id="status" class="status"></div>
+    
+    <script>
+        const video = document.getElementById('video');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const errorElement = document.getElementById('error');
+        const statusElement = document.getElementById('status');
+        let stream = null;
+        
+        // Log browser info
+        statusElement.textContent = 'Browser: ' + navigator.userAgent;
+        
+        startButton.addEventListener('click', async () => {
+            errorElement.textContent = '';
+            statusElement.textContent = 'Starting camera...';
+            
+            try {
+                console.log('Requesting camera...');
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: true,
+                    audio: false 
+                });
+                
+                console.log('Camera access granted');
+                statusElement.textContent = 'Camera started successfully';
+                
+                // Display camera tracks for debugging
+                const tracks = stream.getVideoTracks();
+                console.log('Video tracks:', tracks.map(t => t.label));
+                statusElement.textContent += '\nCamera: ' + (tracks.length > 0 ? tracks[0].label : 'unknown');
+                
+                video.srcObject = stream;
+                console.log('Video source set');
+                
+                video.onloadedmetadata = () => {
+                    console.log('Video metadata loaded');
+                    video.play().then(() => {
+                        console.log('Video playback started');
+                    }).catch(e => {
+                        console.error('Video playback error:', e);
+                        errorElement.textContent = 'Error playing video: ' + e.message;
+                    });
+                };
+            } catch (error) {
+                console.error('Camera error:', error);
+                errorElement.textContent = 'Camera error: ' + error.message;
+                
+                if (error.name === 'NotAllowedError') {
+                    errorElement.textContent = 'Camera access denied. Please enable camera access in your browser settings.';
+                } else if (error.name === 'NotFoundError') {
+                    errorElement.textContent = 'No camera found. Please connect a webcam.';
+                } else if (error.name === 'NotReadableError') {
+                    errorElement.textContent = 'Camera is being used by another application. Please close other apps using the camera.';
+                }
+            }
+        });
+        
+        stopButton.addEventListener('click', () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                video.srcObject = null;
+                stream = null;
+                statusElement.textContent = 'Camera stopped';
+            }
+        });
+    </script>
+</body>
+</html> 
