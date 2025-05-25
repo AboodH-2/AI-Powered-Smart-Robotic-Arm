@@ -4,7 +4,6 @@ __pycache__/
 *$py.class
 *.so
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -16,46 +15,87 @@ lib64/
 parts/
 sdist/
 var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-venv/
-.env
+MANIFEST
 
-# Node.js
-node_modules/
-.next/
-out/
-.DS_Store
-*.pem
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+Interface/venv/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
-# Model files
-*.h5
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# User data (keep structure but not personal data)
+Interface/user_data/*.json
+Interface/rps_data/*.json
+Interface/rps_data/*.csv
+
+# Model files (keep the main model but exclude training artifacts)
 *.pkl
-*.model
+*.joblib
+ASL_Detection/sign-language-detector-python-master/data/*.csv
+ASL_Detection/sign-language-detector-python-master/data/*.txt
+!ASL_Detection/sign-language-detector-python-master/data/class_mapping.txt
 
-# Media files
-*.mp4
-*.avi
-*.mov
-*.jpg
-*.jpeg
-*.png
-*.gif
-!assets/*.png
-!assets/*.jpg
-!assets/*.jpeg
-!assets/*.gif 
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Node modules (if any)
+node_modules/
+
+# Docker
+.dockerignore
+
+# Git
+.git/
+
+# Backup files
+*.bak
+*.backup
+
+# Windows
+desktop.ini
+
+# Empty directories that might be created
+asl_module/
+rps_module/
+user_data/ 
