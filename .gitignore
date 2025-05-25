@@ -63,6 +63,20 @@ ASL_Detection/sign-language-detector-python-master/data/*.csv
 ASL_Detection/sign-language-detector-python-master/data/*.txt
 !ASL_Detection/sign-language-detector-python-master/data/class_mapping.txt
 
+# Large training data (exclude from repository)
+ASL_Detection/sign-language-detector-python-master/full_asl_data/
+full_asl_data/
+
+# Training image datasets (thousands of images)
+ASL_Detection/sign-language-detector-python-master/data/*/
+ASL_Detection/sign-language-detector-python-master/data/*.jpg
+ASL_Detection/sign-language-detector-python-master/data/*.png
+ASL_Detection/sign-language-detector-python-master/data/*.jpeg
+
+# Keep only essential files for the model to work
+!ASL_Detection/sign-language-detector-python-master/data/class_mapping.txt
+!ASL_Detection/sign-language-detector-python-master/data/*.py
+
 # Temporary files
 *.tmp
 *.temp

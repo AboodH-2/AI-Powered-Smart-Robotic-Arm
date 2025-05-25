@@ -252,7 +252,7 @@ detection_interval = 4  # seconds between letter captures
 ## 🚨 **Troubleshooting**
 
 ### **Camera Issues**
-```bash
+   ```bash
 # Check camera availability
 python -c "import cv2; print('Camera 0:', cv2.VideoCapture(0).isOpened())"
 
@@ -261,7 +261,7 @@ python -c "import cv2; print('Camera 0:', cv2.VideoCapture(0).isOpened())"
 ```
 
 ### **Ollama/AI Issues**
-```bash
+   ```bash
 # Check Ollama status
 curl http://localhost:11434/api/tags
 
@@ -273,7 +273,7 @@ ollama serve
 ```
 
 ### **Port Conflicts**
-```bash
+   ```bash
 # Check port 8080 usage
 netstat -aon | find ":8080"
 
@@ -282,7 +282,7 @@ taskkill /f /pid [PID]
 ```
 
 ### **Model Loading Issues**
-```bash
+   ```bash
 # Verify model file exists
 ls ASL_Detection/sign-language-detector-python-master/model.p
 
