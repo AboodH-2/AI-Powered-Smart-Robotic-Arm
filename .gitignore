@@ -52,9 +52,9 @@ Thumbs.db
 logs/
 
 # User data (keep structure but not personal data)
-Interface/user_data/*.json
-Interface/rps_data/*.json
-Interface/rps_data/*.csv
+Interface/user_data/
+Interface/rps_data/
+RPS/mab02/data/
 
 # Model files (keep the main model but exclude training artifacts)
 *.pkl
