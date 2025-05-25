@@ -56,9 +56,15 @@ Interface/user_data/
 Interface/rps_data/
 RPS/mab02/data/
 
-# Model files (keep the main model but exclude training artifacts)
-*.pkl
-*.joblib
+# Model files - INCLUDE essential model files but exclude training artifacts
+# Include the trained model and processed data
+!ASL_Detection/sign-language-detector-python-master/model.p
+!ASL_Detection/sign-language-detector-python-master/data.pickle
+!ASL_Detection/sign-language-detector-python-master/*.py
+!ASL_Detection/sign-language-detector-python-master/requirements.txt
+!ASL_Detection/sign-language-detector-python-master/data/class_mapping.txt
+
+# Exclude training CSV and other data files
 ASL_Detection/sign-language-detector-python-master/data/*.csv
 ASL_Detection/sign-language-detector-python-master/data/*.txt
 !ASL_Detection/sign-language-detector-python-master/data/class_mapping.txt
@@ -67,15 +73,11 @@ ASL_Detection/sign-language-detector-python-master/data/*.txt
 ASL_Detection/sign-language-detector-python-master/full_asl_data/
 full_asl_data/
 
-# Training image datasets (thousands of images)
+# Training image datasets (thousands of images) - exclude numbered directories
 ASL_Detection/sign-language-detector-python-master/data/*/
 ASL_Detection/sign-language-detector-python-master/data/*.jpg
 ASL_Detection/sign-language-detector-python-master/data/*.png
 ASL_Detection/sign-language-detector-python-master/data/*.jpeg
-
-# Keep only essential files for the model to work
-!ASL_Detection/sign-language-detector-python-master/data/class_mapping.txt
-!ASL_Detection/sign-language-detector-python-master/data/*.py
 
 # Temporary files
 *.tmp
